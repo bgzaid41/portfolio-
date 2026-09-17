@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohd Zaid Gaibuwale — Programmer, AI Enthusiast, Creator</title>
+<meta name="description" content="Portfolio of Mohd Zaid Gaibuwale — Programmer, AI Enthusiast and Creator. BCA student building AI tools, web apps and creative projects.">
+<meta property="og:title" content="Mohd Zaid Gaibuwale — Programmer, AI Enthusiast, Creator">
+<meta property="og:description" content="I build intelligent solutions with code, creativity and purpose.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --bg:#F6F5FC;
+  --bg-soft:#EDEBFA;
+  --surface:rgba(255,255,255,0.62);
+  --surface-strong:rgba(255,255,255,0.82);
+  --surface-border:rgba(255,255,255,0.75);
+  --ink:#12142E;
+  --ink-soft:#5A5D7E;
+  --violet:#6C5CE7;
+  --violet-2:#8B7CF6;
+  --blue:#4F8DFF;
+  --ring:0 8px 30px rgba(76,66,150,0.10);
+  --ring-hover:0 16px 40px rgba(76,66,150,0.16);
+  --grad-brand: linear-gradient(120deg,var(--violet),var(--blue));
+}
+:root[data-theme="dark"]{
+  --bg:#0A0B18;
+  --bg-soft:#11132A;
+  --surface:rgba(23,25,48,0.58);
+  --surface-strong:rgba(23,25,48,0.82);
+  --surface-border:rgba(255,255,255,0.08);
+  --ink:#EDEEFB;
+  --ink-soft:#9A9DC7;
+  --violet:#8B7CF6;
+  --violet-2:#6C5CE7;
+  --blue:#5FA0FF;
+  --ring:0 8px 30px rgba(0,0,0,0.35);
+  --ring-hover:0 16px 45px rgba(0,0,0,0.5);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A0B18; --bg-soft:#11132A; --surface:rgba(23,25,48,0.58);
+    --surface-strong:rgba(23,25,48,0.82); --surface-border:rgba(255,255,255,0.08);
+    --ink:#EDEEFB; --ink-soft:#9A9DC7; --violet:#8B7CF6; --violet-2:#6C5CE7; --blue:#5FA0FF;
+    --ring:0 8px 30px rgba(0,0,0,0.35); --ring-hover:0 16px 45px rgba(0,0,0,0.5);
+  }
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(60% 45% at 85% -5%, color-mix(in srgb, var(--violet) 18%, transparent), transparent 60%),
+    radial-gradient(50% 40% at 5% 10%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 60%),
+    var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  transition:background .4s ease, color .4s ease;
+  overflow-x:hidden;
+}
+h1,h2,h3,.font-display{font-family:'Space Grotesk',sans-serif;}
+::selection{background:var(--violet); color:#fff;}
+:focus-visible{outline:2px solid var(--violet); outline-offset:3px; border-radius:6px;}
+a,button{-webkit-tap-highlight-color:transparent;}
+
+/* glass surfaces */
+.glass{
+  background:var(--surface);
+  border:1px solid var(--surface-border);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:var(--ring);
+}
+.glass-strong{
+  background:var(--surface-strong);
+  border:1px solid var(--surface-border);
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  box-shadow:var(--ring);
+}
+.card-hover{transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;}
+.card-hover:hover{transform:translateY(-6px); box-shadow:var(--ring-hover);}
+
+.text-soft{color:var(--ink-soft);}
+.brand-grad{background:var(--grad-brand); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.btn-primary{
+  background:linear-gradient(120deg,var(--ink),color-mix(in srgb, var(--ink) 80%, var(--violet)));
+  color:var(--bg); border-radius:999px; padding:.85rem 1.6rem; font-weight:600;
+  display:inline-flex; align-items:center; gap:.5rem; transition:transform .25s ease, box-shadow .25s ease;
+  box-shadow:0 10px 25px -8px color-mix(in srgb, var(--ink) 60%, transparent);
+}
+:root[data-theme="dark"] .btn-primary, :root:not([data-theme="light"]) .btn-primary{
+  background:linear-gradient(120deg,var(--violet),var(--blue)); color:#fff;
+}
+.btn-primary:hover{transform:translateY(-3px);}
+.btn-ghost{
+  border-radius:999px; padding:.85rem 1.6rem; font-weight:600;
+  border:1px solid var(--surface-border); background:var(--surface);
+  display:inline-flex; align-items:center; gap:.5rem; transition:transform .25s ease, background .25s ease;
+}
+.btn-ghost:hover{transform:translateY(-3px); background:var(--surface-strong);}
+
+.section-eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem; font-size:.78rem; letter-spacing:.14em;
+  color:var(--violet); font-weight:700; text-transform:uppercase;
+}
+.section-title{font-size:clamp(1.6rem,3vw,2.3rem); font-weight:600; letter-spacing:-0.01em;}
+
+.icon-btn{
+  width:2.6rem; height:2.6rem; display:inline-flex; align-items:center; justify-content:center;
+  border-radius:999px; border:1px solid var(--surface-border); background:var(--surface);
+  color:var(--ink); transition:transform .25s ease, background .25s ease, color .25s ease;
+}
+.icon-btn:hover{transform:translateY(-3px) scale(1.05); background:var(--grad-brand); color:#fff; border-color:transparent;}
+
+/* reveal animation */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1; transform:translateY(0);}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none;}
+  html{scroll-behavior:auto;}
+}
+
+/* floating decor */
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-16px) rotate(3deg);}}
+.floaty{animation:floaty 7s ease-in-out infinite;}
+.floaty-slow{animation:floaty 11s ease-in-out infinite;}
+.floaty-rev{animation:floaty 9s ease-in-out infinite reverse;}
+
+@keyframes gradientShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.animated-gradient{background-size:200% 200%; animation:gradientShift 14s ease infinite;}
+
+/* scrollbar */
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb, var(--violet) 40%, transparent); border-radius:99px;}
+
+/* tech marquee */
+.marquee-track{display:flex; gap:2.5rem; width:max-content; animation:marquee 28s linear infinite;}
+.marquee-track:hover{animation-play-state:paused;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* nav link underline */
+.nav-link{position:relative; color:var(--ink-soft); font-weight:500; transition:color .25s ease;}
+.nav-link::after{content:'';position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--grad-brand);transition:width .3s ease;}
+.nav-link:hover{color:var(--ink);}
+.nav-link:hover::after,.nav-link.active::after{width:100%;}
+.nav-link.active{color:var(--ink);}
+
+.theme-toggle{
+  width:2.6rem;height:2.6rem;border-radius:999px;border:1px solid var(--surface-border);
+  background:var(--surface); display:inline-flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+}
+.theme-toggle svg{transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .3s ease; position:absolute;}
+[data-theme="dark"] .icon-sun, .theme-toggle .icon-moon{opacity:1; transform:rotate(0);}
+[data-theme="dark"] .icon-moon{opacity:0; transform:rotate(90deg);}
+.icon-sun{opacity:0; transform:rotate(-90deg);}
+[data-theme="dark"] .icon-sun{opacity:1; transform:rotate(0);}
+
+/* mobile menu */
+#mobileMenu{max-height:0; overflow:hidden; transition:max-height .45s cubic-bezier(.2,.8,.2,1);}
+#mobileMenu.open{max-height:26rem;}
+
+/* form */
+.field{
+  width:100%; padding:.9rem 1.1rem; border-radius:1rem; border:1px solid var(--surface-border);
+  background:var(--surface); color:var(--ink); transition:border-color .25s ease, box-shadow .25s ease;
+}
+.field::placeholder{color:var(--ink-soft);}
+.field:focus{border-color:var(--violet); box-shadow:0 0 0 4px color-mix(in srgb, var(--violet) 18%, transparent); outline:none;}
+.field-error{border-color:#EF5E5E !important;}
+.error-text{color:#EF5E5E; font-size:.78rem; margin-top:.25rem; display:none;}
+.error-text.show{display:block;}
+
+/* progress bar */
+#scrollProgress{position:fixed; top:0; left:0; height:3px; background:var(--grad-brand); z-index:100; width:0%;}
+
+/* skill chip */
+.chip{
+  padding:.55rem 1rem; border-radius:999px; border:1px solid var(--surface-border); background:var(--surface);
+  font-size:.85rem; font-weight:600; display:inline-flex; align-items:center; gap:.5rem;
+  transition:transform .25s ease, background .25s ease, color .25s ease;
+}
+.chip:hover{transform:translateY(-3px); background:var(--grad-brand); color:#fff; border-color:transparent;}
+
+/* thumbnail zoom */
+.thumb-wrap{overflow:hidden; border-radius:1.25rem 1.25rem 0 0;}
+.thumb-wrap svg{transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.proj-card:hover .thumb-wrap svg{transform:scale(1.08);}
+
+/* loader */
+#loader{position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; align-items:center; justify-content:center; transition:opacity .6s ease, visibility .6s ease;}
+#loader.hide{opacity:0; visibility:hidden;}
+
+/* toast */
+#toast{position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px); opacity:0; pointer-events:none; transition:all .4s cubic-bezier(.2,.8,.2,1); z-index:150;}
+#toast.show{opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto;}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="flex flex-col items-center gap-4">
+    <div class="w-14 h-14 rounded-2xl animated-gradient" style="background-image:linear-gradient(120deg,var(--violet),var(--blue),var(--violet-2));"></div>
+    <div class="font-display text-sm tracking-[0.2em] text-soft">LOADING PORTFOLIO</div>
+  </div>
+</div>
+
+<div id="scrollProgress"></div>
+
+<!-- SVG SPRITE -->
+<svg width="0" height="0" style="position:absolute">
+<symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.79 10.79.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.17.69-3.84-1.35-3.84-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.95.1-.74.4-1.25.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.15 1.17a10.9 10.9 0 0 1 5.73 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.57.23 2.73.11 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.67 5.34-5.21 5.62.41.36.77 1.06.77 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5Z"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM.5 8.98h4.96V23H.5V8.98ZM8.34 8.98h4.75v1.92h.07c.66-1.25 2.28-2.57 4.7-2.57 5.03 0 5.96 3.31 5.96 7.62V23h-4.96v-6.14c0-1.46-.03-3.35-2.04-3.35-2.04 0-2.35 1.6-2.35 3.24V23H8.34V8.98Z"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15c.53.53.9 1.09 1.15 1.77.17.46.36 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.17-1.26.36-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.17-.46-.36-1.26-.4-2.43-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43A4.9 4.9 0 0 1 3.9 3.78 4.9 4.9 0 0 1 5.67 2.63c.46-.17 1.26-.36 2.43-.4C9.37 2.17 9.75 2.16 12 2.16Zm0 1.98c-3.14 0-3.5.01-4.74.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.24-.07 1.6-.07 4.74s.01 3.5.07 4.74c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.96-.2-1.48-.34-1.83a3 3 0 0 0-.73-1.13 3 3 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.24-.06-1.6-.07-4.74-.07Zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98Zm0 1.98a3.51 3.51 0 1 0 0 7.02 3.51 3.51 0 0 0 0-7.02Zm5.71-2.2a1.28 1.28 0 1 1 0 2.56 1.28 1.28 0 0 1 0-2.56Z"/></symbol>
+<symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.5s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1C16.9 2.8 12 2.8 12 2.8h-.01s-4.89 0-8.19.34c-.46.05-1.46.05-2.36 1-.71.72-.94 2.36-.94 2.36S0 8.42 0 10.34v1.8c0 1.92.23 3.84.23 3.84s.23 1.64.94 2.36c.9.95 2.08.92 2.6 1.02C5.7 19.55 12 19.6 12 19.6s4.9-.01 8.2-.34c.46-.06 1.46-.06 2.36-1.02.71-.72.94-2.36.94-2.36s.23-1.92.23-3.84v-1.8c0-1.92-.23-3.84-.23-3.84ZM9.55 14.5V8.02l6.27 3.25-6.27 3.23Z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path fill="currentColor" d="M2 4.5h20a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1Zm1.6 2 8.4 6.3L20.4 6.5H3.6ZM21 8.6l-8.4 6.3a1 1 0 0 1-1.2 0L3 8.6v9.4h18V8.6Z"/></symbol>
+<symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.57-.48-.5-.67-.5-.17 0-.37-.02-.57-.02s-.52.07-.8.37c-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.5.71.3 1.27.49 1.7.62.72.23 1.37.2 1.88.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35ZM12.02 2C6.5 2 2 6.48 2 12c0 1.88.52 3.63 1.42 5.13L2 22l5-1.36A9.96 9.96 0 0 0 12.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2Zm0 18.1c-1.66 0-3.2-.48-4.5-1.31l-.32-.2-3 .82.8-2.93-.21-.32A8.08 8.08 0 0 1 3.92 12c0-4.47 3.63-8.1 8.1-8.1 4.47 0 8.1 3.63 8.1 8.1 0 4.47-3.63 8.1-8.1 8.1Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 4V2m0 20v-2m8-8h2M2 12h2m14.14 6.14 1.42 1.42M4.44 4.44l1.42 1.42m0 12.28-1.42 1.42M19.56 4.44l-1.42 1.42M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 12.5A9 9 0 1 1 11.5 3a7 7 0 0 0 9.5 9.5Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 5 5 9-9"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-40 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <div class="glass-strong rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="font-display text-xl font-bold tracking-tight flex items-center gap-2">
+        <span class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm" style="background-image:var(--grad-brand)">Z</span>
+        ZAID
+      </a>
+      <nav class="hidden lg:flex items-center gap-8" id="desktopNav">
+        <a href="#home" class="nav-link active" data-nav>Home</a>
+        <a href="#about" class="nav-link" data-nav>About</a>
+        <a href="#projects" class="nav-link" data-nav>Projects</a>
+        <a href="#services" class="nav-link" data-nav>Services</a>
+        <a href="#skills" class="nav-link" data-nav>Skills</a>
+        <a href="#experience" class="nav-link" data-nav>Experience</a>
+        <a href="#contact" class="nav-link" data-nav>Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex btn-primary text-sm">Let's Connect <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun w-5 h-5"><use href="#i-sun"/></svg>
+          <svg class="icon-moon w-5 h-5"><use href="#i-moon"/></svg>
+        </button>
+        <button id="menuBtn" class="theme-toggle lg:hidden" aria-label="Open menu" aria-expanded="false">
+          <svg class="w-5 h-5" id="menuIcon"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="lg:hidden mt-2">
+      <div class="glass-strong rounded-2xl px-6 py-5 flex flex-col gap-4">
+        <a href="#home" class="nav-link" data-nav>Home</a>
+        <a href="#about" class="nav-link" data-nav>About</a>
+        <a href="#projects" class="nav-link" data-nav>Projects</a>
+        <a href="#services" class="nav-link" data-nav>Services</a>
+        <a href="#skills" class="nav-link" data-nav>Skills</a>
+        <a href="#experience" class="nav-link" data-nav>Experience</a>
+        <a href="#contact" class="nav-link" data-nav>Contact</a>
+        <a href="#contact" class="btn-primary text-sm justify-center mt-2">Let's Connect <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="home" class="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <!-- ambient blobs -->
+  <div class="pointer-events-none absolute -top-24 -right-24 w-[30rem] h-[30rem] rounded-full opacity-40 blur-3xl floaty-slow" style="background:radial-gradient(circle,var(--violet),transparent 70%)"></div>
+  <div class="pointer-events-none absolute top-40 -left-32 w-[26rem] h-[26rem] rounded-full opacity-30 blur-3xl floaty-rev" style="background:radial-gradient(circle,var(--blue),transparent 70%)"></div>
+
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-12 items-center relative">
+    <!-- left -->
+    <div class="reveal">
+      <span class="section-eyebrow">Hello, I'm</span>
+      <h1 class="font-display mt-4 font-bold leading-[0.95] tracking-tight" style="font-size:clamp(2.4rem,6vw,4.1rem)">
+        MOHD ZAID<br><span class="brand-grad">GAIBUWALE</span>
+      </h1>
+      <p class="mt-5 text-lg font-medium text-soft">Programmer &nbsp;|&nbsp; AI Enthusiast &nbsp;|&nbsp; Creator</p>
+      <p class="mt-4 text-base leading-relaxed text-soft max-w-lg">
+        I build intelligent solutions with code, creativity and purpose. Passionate about Artificial Intelligence, Web Development, and turning ideas into real-world applications.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a href="#projects" class="btn-primary">View My Work <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
+        <a href="#" id="downloadCv" class="btn-ghost">Download CV <svg class="w-4 h-4"><use href="#i-download"/></svg></a>
+      </div>
+
+      <div class="mt-8 flex items-center gap-3">
+        <a href="https://github.com/bgzaid41" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub"><svg class="w-4.5 h-4.5" style="width:1.1rem;height:1.1rem"><use href="#i-github"/></svg></a>
+        <a href="https://www.linkedin.com/in/zaid-gaibi-25a194363" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn"><svg style="width:1.1rem;height:1.1rem"><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.instagram.com/__zaid.07_" target="_blank" rel="noopener" class="icon-btn" aria-label="Instagram"><svg style="width:1.1rem;height:1.1rem"><use href="#i-instagram"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" class="icon-btn" aria-label="YouTube"><svg style="width:1.1rem;height:1.1rem"><use href="#i-youtube"/></svg></a>
+        <a href="mailto:hello@zaidgaibuwale.dev" class="icon-btn" aria-label="Email"><svg style="width:1.1rem;height:1.1rem"><use href="#i-mail"/></svg></a>
+      </div>
+
+      <p class="mt-8 font-display text-base italic text-soft">"Code today. A smarter tomorrow." <span class="not-italic">— Zaid</span></p>
+    </div>
+
+    <!-- right / portrait -->
+    <div class="relative reveal" style="transition-delay:.1s">
+      <div class="relative mx-auto max-w-sm">
+        <div class="absolute -inset-4 rounded-[2.5rem] opacity-60 blur-2xl" style="background:var(--grad-brand)"></div>
+        <div class="relative glass rounded-[2.25rem] p-3">
+          <img src="data:image/jpeg;base64,{{PORTRAIT_B64}}" alt="Portrait of Mohd Zaid Gaibuwale" class="w-full h-[26rem] sm:h-[30rem] object-cover rounded-[1.8rem]" style="object-position:50% 15%" loading="eager">
+        </div>
+
+        <!-- floating stat cards -->
+        <div class="hidden sm:block absolute -left-10 top-10 glass rounded-2xl px-4 py-3 floaty">
+          <p class="font-display font-bold text-lg leading-none">5+</p>
+          <p class="text-xs text-soft mt-1">Years of Learning</p>
+        </div>
+        <div class="hidden sm:block absolute -right-8 top-1/3 glass rounded-2xl px-4 py-3 floaty-slow">
+          <p class="font-display font-bold text-lg leading-none">15+</p>
+          <p class="text-xs text-soft mt-1">Projects Completed</p>
+        </div>
+        <div class="hidden sm:block absolute -left-8 bottom-24 glass rounded-2xl px-4 py-3 floaty-rev">
+          <p class="font-display font-bold text-lg leading-none">100+</p>
+          <p class="text-xs text-soft mt-1">Hours Coding</p>
+        </div>
+        <div class="hidden sm:block absolute -right-6 bottom-4 glass rounded-2xl px-4 py-3 floaty">
+          <p class="font-display font-bold text-lg leading-none">∞</p>
+          <p class="text-xs text-soft mt-1">Always Learning</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- mobile stat strip -->
+  <div class="sm:hidden max-w-md mx-auto mt-6 grid grid-cols-4 gap-2 reveal">
+    <div class="glass rounded-xl px-2 py-3 text-center"><p class="font-display font-bold text-sm">5+</p><p class="text-[10px] text-soft mt-0.5">Years</p></div>
+    <div class="glass rounded-xl px-2 py-3 text-center"><p class="font-display font-bold text-sm">15+</p><p class="text-[10px] text-soft mt-0.5">Projects</p></div>
+    <div class="glass rounded-xl px-2 py-3 text-center"><p class="font-display font-bold text-sm">100+</p><p class="text-[10px] text-soft mt-0.5">Hours</p></div>
+    <div class="glass rounded-xl px-2 py-3 text-center"><p class="font-display font-bold text-sm">∞</p><p class="text-[10px] text-soft mt-0.5">Learning</p></div>
+  </div>
+</section>
+
+<!-- ============ TECH STRIP ============ -->
+<section class="px-4 sm:px-6 lg:px-8 -mt-2 reveal">
+  <div class="max-w-7xl mx-auto glass rounded-2xl py-5 overflow-hidden">
+    <div class="flex items-center gap-8">
+      <p class="hidden md:block pl-6 text-sm font-semibold whitespace-nowrap text-soft shrink-0">Trusted by technology I love</p>
+      <div class="overflow-hidden flex-1 [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+        <div class="marquee-track" id="techMarquee"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT + SERVICES ============ -->
+<section id="about" class="px-4 sm:px-6 lg:px-8 py-24">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6">
+    <!-- about -->
+    <div class="glass rounded-3xl p-8 sm:p-10 reveal card-hover">
+      <span class="section-eyebrow">About Me</span>
+      <h2 class="section-title mt-3">Building with curiosity, one project at a time</h2>
+      <p class="mt-5 text-soft leading-relaxed">
+        Aspiring Software Developer currently pursuing BCA with a strong interest in Artificial Intelligence, Python, and Full-Stack Development. I love building real-world applications, exploring new technologies, and continuously improving my skills through hands-on projects. Besides coding, I'm also passionate about photography, video editing and gaming.
+      </p>
+      <a href="#projects" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm" style="color:var(--violet)">
+        More About Me <svg class="w-4 h-4"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
+
+    <!-- services -->
+    <div class="reveal" style="transition-delay:.1s">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="section-eyebrow">My Services</span>
+      </div>
+      <div id="servicesGrid" class="grid grid-cols-2 gap-4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PROJECTS ============ -->
+<section id="projects" class="px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between gap-4 mb-8 reveal">
+      <div>
+        <span class="section-eyebrow">Featured Projects</span>
+        <h2 class="section-title mt-3">Things I've shipped &amp; explored</h2>
+      </div>
+      <a href="https://github.com/bgzaid41" target="_blank" rel="noopener" class="hidden sm:inline-flex btn-ghost text-sm shrink-0">View All Projects <svg class="w-4 h-4"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="px-4 sm:px-6 lg:px-8 py-24">
+  <div class="max-w-7xl mx-auto glass rounded-3xl p-8 sm:p-10 reveal">
+    <span class="section-eyebrow">Skills &amp; Technologies</span>
+    <h2 class="section-title mt-3 mb-8">What I work with</h2>
+    <div id="skillsList" class="space-y-6"></div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION / CERTS / EXTRA ============ -->
+<section id="experience" class="px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-3 gap-6">
+    <div class="glass rounded-3xl p-7 reveal card-hover">
+      <span class="section-eyebrow">Education</span>
+      <div id="eduList" class="mt-5 space-y-5"></div>
+    </div>
+    <div class="glass rounded-3xl p-7 reveal card-hover" style="transition-delay:.1s">
+      <span class="section-eyebrow">Certifications</span>
+      <div id="certList" class="mt-5 space-y-5"></div>
+    </div>
+    <div class="glass rounded-3xl p-7 reveal card-hover" style="transition-delay:.2s">
+      <span class="section-eyebrow">Extra Curricular</span>
+      <div id="extraList" class="mt-5 space-y-5"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-6">
+    <!-- quote + cta -->
+    <div class="flex flex-col gap-6">
+      <div class="glass rounded-3xl p-8 reveal card-hover">
+        <p class="font-display text-lg leading-snug">"Discipline turns ideas into results."</p>
+        <p class="text-soft text-sm mt-2">— Zaid</p>
+      </div>
+      <div class="glass-strong rounded-3xl p-8 flex-1 flex flex-col justify-between reveal" style="transition-delay:.1s">
+        <div>
+          <h2 class="font-display text-2xl font-semibold leading-tight">Let's work<br>together</h2>
+          <p class="text-soft mt-3 text-sm leading-relaxed">Have a project in mind? Let's create something amazing together.</p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="mailto:hello@zaidgaibuwale.dev" class="btn-primary text-sm">Email Me <svg class="w-4 h-4"><use href="#i-mail"/></svg></a>
+          <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="btn-ghost text-sm">WhatsApp <svg class="w-4 h-4"><use href="#i-whatsapp"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- form -->
+    <form id="contactForm" class="glass rounded-3xl p-8 sm:p-10 reveal" style="transition-delay:.15s" novalidate>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="text-sm font-semibold" for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" class="field mt-2" placeholder="Your full name">
+          <p class="error-text" data-error-for="cf-name">Please enter your name.</p>
+        </div>
+        <div>
+          <label class="text-sm font-semibold" for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" class="field mt-2" placeholder="you@example.com">
+          <p class="error-text" data-error-for="cf-email">Please enter a valid email.</p>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-sm font-semibold" for="cf-project">Project</label>
+          <input id="cf-project" name="project" type="text" class="field mt-2" placeholder="What are you building?">
+          <p class="error-text" data-error-for="cf-project">Tell me a little about the project.</p>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="text-sm font-semibold" for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" class="field mt-2" placeholder="Share a few details..."></textarea>
+          <p class="error-text" data-error-for="cf-message">Please write a short message.</p>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary mt-6 w-full sm:w-auto justify-center">Send Message <svg class="w-4 h-4"><use href="#i-arrow"/></svg></button>
+    </form>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex justify-end pr-2 -mt-2 mb-10">
+    <p class="font-display text-2xl italic text-soft select-none" aria-hidden="true">Zaid</p>
+  </div>
+</div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="px-4 sm:px-6 lg:px-8 pb-8">
+  <div class="max-w-7xl mx-auto glass rounded-3xl px-6 sm:px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <span class="w-9 h-9 rounded-lg flex items-center justify-center text-white text-sm font-display font-bold" style="background-image:var(--grad-brand)">Z</span>
+      <div>
+        <p class="font-display font-bold">ZAID</p>
+        <p class="text-xs text-soft">Programmer | AI Enthusiast | Creator</p>
+      </div>
+    </div>
+    <nav class="flex flex-wrap items-center justify-center gap-5 text-sm text-soft">
+      <a href="#home" class="hover:text-[var(--ink)] transition">Home</a>
+      <a href="#about" class="hover:text-[var(--ink)] transition">About</a>
+      <a href="#projects" class="hover:text-[var(--ink)] transition">Projects</a>
+      <a href="#services" class="hover:text-[var(--ink)] transition">Services</a>
+      <a href="#skills" class="hover:text-[var(--ink)] transition">Skills</a>
+      <a href="#contact" class="hover:text-[var(--ink)] transition">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://github.com/bgzaid41" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub"><svg style="width:1rem;height:1rem"><use href="#i-github"/></svg></a>
+      <a href="https://www.linkedin.com/in/zaid-gaibi-25a194363" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn"><svg style="width:1rem;height:1rem"><use href="#i-linkedin"/></svg></a>
+      <a href="https://www.instagram.com/__zaid.07_" target="_blank" rel="noopener" class="icon-btn" aria-label="Instagram"><svg style="width:1rem;height:1rem"><use href="#i-instagram"/></svg></a>
+      <a href="#" target="_blank" rel="noopener" class="icon-btn" aria-label="YouTube"><svg style="width:1rem;height:1rem"><use href="#i-youtube"/></svg></a>
+      <a href="mailto:hello@zaidgaibuwale.dev" class="icon-btn" aria-label="Email"><svg style="width:1rem;height:1rem"><use href="#i-mail"/></svg></a>
+    </div>
+  </div>
+  <p class="text-center text-xs text-soft mt-6">© 2026 Mohd Zaid Gaibuwale. All rights reserved.</p>
+</footer>
+
+<!-- TOAST -->
+<div id="toast" class="glass-strong rounded-2xl px-5 py-4 flex items-center gap-3">
+  <span class="w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0" style="background:#2ECC71"><svg style="width:0.9rem;height:0.9rem"><use href="#i-check"/></svg></span>
+  <div>
+    <p class="text-sm font-semibold">Message sent</p>
+    <p class="text-xs text-soft">Thanks for reaching out — I'll reply soon.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   CENTRAL CONFIG — edit project URLs / resume / contact here
+   ============================================================ */
+const CONFIG = {
+  resumeUrl: "", // add a hosted PDF link to enable "Download CV"
+  githubProfile: "https://github.com/bgzaid41",
+  whatsapp: "https://wa.me/910000000000", // update with real number
+  email: "hello@zaidgaibuwale.dev"
+};
+
+const PROJECTS = [
+  {
+    id:"jarvis", title:"JARVIS MK-12", category:"AI Desktop Assistant",
+    tech:["Python","AI","Flask","Speech Recognition","TTS/STT"],
+    desc:"An AI-powered desktop assistant with voice control, online and offline AI capabilities, automation and application control.",
+    live:"", github:CONFIG.githubProfile, thumb:"jarvis"
+  },
+  {
+    id:"bos", title:"BOS — Business Management System", category:"Business Management System",
+    tech:["Python","Flask","MySQL","Web"],
+    desc:"A complete business management system designed for customer handling, business data and reporting.",
+    live:"", github:CONFIG.githubProfile, thumb:"bos"
+  },
+  {
+    id:"energy", title:"Energy Drink Website", category:"Brand Website",
+    tech:["HTML","CSS","JavaScript","Responsive"],
+    desc:"A modern interactive energy drink brand website featuring product presentation, animations and a premium visual experience.",
+    live:"", github:CONFIG.githubProfile, thumb:"energy"
+  },
+  {
+    id:"music", title:"Music Player", category:"Web Audio App",
+    tech:["HTML","CSS","JavaScript","Web Audio"],
+    desc:"A modern music player with playlist support, play/pause controls, progress bar and an immersive music-focused interface.",
+    live:"", github:CONFIG.githubProfile, thumb:"music"
+  },
+  {
+    id:"chat", title:"Chat Application", category:"Real-time Messaging",
+    tech:["React","Node.js","Socket.io","MongoDB"],
+    desc:"A modern real-time chat application with authentication, messaging and live communication features.",
+    live:"", github:CONFIG.githubProfile, thumb:"chat"
+  }
+];
+
+const SERVICES = [
+  {title:"Web Development", desc:"Modern & responsive web applications.", icon:"code"},
+  {title:"AI Development", desc:"AI tools, chatbots & automation.", icon:"cpu"},
+  {title:"UI/UX Design", desc:"Clean & intuitive digital experiences.", icon:"layout"},
+  {title:"Video Editing", desc:"Professional video editing & reels.", icon:"film"},
+  {title:"Photography", desc:"Creative photography & storytelling.", icon:"camera"},
+  {title:"Consultation", desc:"Project guidance & technical support.", icon:"chat"}
+];
+
+const TECHS = [
+  {n:"Python", bg:"#FFD43B", fg:"#2B5B84", l:"Py"},
+  {n:"Java", bg:"#ED8B00", fg:"#fff", l:"Jv"},
+  {n:"C", bg:"#283593", fg:"#fff", l:"C"},
+  {n:"JavaScript", bg:"#F7DF1E", fg:"#2B2B00", l:"JS"},
+  {n:"HTML", bg:"#E44D26", fg:"#fff", l:"H5"},
+  {n:"CSS", bg:"#2965F1", fg:"#fff", l:"C3"},
+  {n:"React", bg:"#61DAFB", fg:"#0B2B36", l:"Rx"},
+  {n:"Node.js", bg:"#3C873A", fg:"#fff", l:"Nd"},
+  {n:"Flask", bg:"#1a1a1a", fg:"#fff", l:"Fl"},
+  {n:"MySQL", bg:"#4479A1", fg:"#fff", l:"My"},
+  {n:"Git", bg:"#F05033", fg:"#fff", l:"Gt"},
+  {n:"GitHub", bg:"#171515", fg:"#fff", l:"Gh"},
+  {n:"VS Code", bg:"#007ACC", fg:"#fff", l:"VS"}
+];
+
+const SKILL_GROUPS = [
+  {label:"Languages", items:["Python","Java","C","JavaScript"]},
+  {label:"Frontend", items:["HTML","CSS","React"]},
+  {label:"Backend", items:["Flask","Node.js"]},
+  {label:"Database", items:["MySQL"]},
+  {label:"Tools", items:["Git","GitHub","VS Code"]},
+  {label:"Concepts", items:["REST APIs","CRUD Operations","Artificial Intelligence","Machine Learning Basics"]}
+];
+
+const EDUCATION = [
+  {school:"BCA — People Tree Education Society", loc:"Nehru Nagar, Belgaum", time:"2023 – 2026"},
+  {school:"Bhartesh PU College", loc:"Belgaum", time:"2021 – 2022"},
+  {school:"St. Paul High School", loc:"Camp, Belgaum", time:"2008 – 2020"}
+];
+
+const CERTS = [
+  {title:"Data Science Using Artificial Intelligence Workshop", org:"PeopleTree Education Society & ZEEL Code Labs", year:"2025"},
+  {title:"AI for Students: Build Your Own Generative AI Model", org:"NxtWave", year:"2025"},
+  {title:"IBM SkillsBuild Certificate Course", org:"Data Analysis", year:""}
+];
+
+const EXTRA = [
+  {title:"Gaming", desc:"Competitive & casual gaming", icon:"gamepad"},
+  {title:"Photography", desc:"Capturing stories through the lens", icon:"camera"},
+  {title:"Video Editing", desc:"Creating cinematic content", icon:"film"}
+];
+
+/* ============================================================
+   ICONS (inline path data, keyed)
+   ============================================================ */
+const ICONS = {
+  code:'<path d="M8 9 4 12l4 3M16 9l4 3-4 3M13.5 6.5l-3 11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  cpu:'<rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M9.5 7V4M14.5 7V4M9.5 20v-3M14.5 20v-3M7 9.5H4M7 14.5H4M20 9.5h-3M20 14.5h-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  layout:'<rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M4 9.5h16M9.5 9.5V20" stroke="currentColor" stroke-width="1.8"/>',
+  film:'<rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 5v14M16 5v14M3.5 9.5h4M3.5 14.5h4M16.5 9.5h4M16.5 14.5h4" stroke="currentColor" stroke-width="1.8"/>',
+  camera:'<path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1-1.6A1 1 0 0 1 9.35 5h5.3a1 1 0 0 1 .85.4L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.3" stroke="currentColor" stroke-width="1.8" fill="none"/>',
+  chat:'<path d="M4 5.5h16v10H9.5L5 19v-3.5H4v-10Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M8 9.5h8M8 12.5h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  gamepad:'<path d="M7 9h10a4 4 0 0 1 4 4v1.2a2.8 2.8 0 0 1-5.1 1.6L14.6 14H9.4l-1.3 1.8A2.8 2.8 0 0 1 3 14.2V13a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M8 10.5v3M6.5 12h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="11.2" r=".9" fill="currentColor"/><circle cx="18" cy="13.2" r=".9" fill="currentColor"/>',
+  cap:'<path d="M12 4.5 3 9l9 4.5 9-4.5-9-4.5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M7 11v4.2c0 1 2.2 2.3 5 2.3s5-1.3 5-2.3V11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  badge:'<circle cx="12" cy="9" r="3.3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8.2 12.2 6 20l6-2.3 6 2.3-2.2-7.8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/>'
+};
+function icon(key, cls){ return `<svg class="${cls||'w-5 h-5'}" viewBox="0 0 24 24">${ICONS[key]||""}</svg>`; }
+
+/* ============================================================
+   RENDER: tech marquee
+   ============================================================ */
+function badge(t, size){
+  size = size || "w-9 h-9 text-[11px]";
+  return `<div class="flex flex-col items-center gap-2 shrink-0">
+    <div class="${size} rounded-xl flex items-center justify-center font-bold font-display shadow-sm" style="background:${t.bg};color:${t.fg}">${t.l}</div>
+    <span class="text-xs text-soft whitespace-nowrap">${t.n}</span>
+  </div>`;
+}
+(function renderMarquee(){
+  const track = document.getElementById("techMarquee");
+  const loopTechs = [...TECHS, ...TECHS]; // doubled for seamless loop
+  track.innerHTML = loopTechs.map(t=>badge(t)).join("");
+})();
+
+/* ============================================================
+   RENDER: services
+   ============================================================ */
+(function renderServices(){
+  const grid = document.getElementById("servicesGrid");
+  grid.innerHTML = SERVICES.map((s,i)=>`
+    <div class="glass rounded-2xl p-5 card-hover reveal" style="transition-delay:${i*0.05}s">
+      <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background:var(--grad-brand);color:#fff">
+        ${icon(s.icon,"w-5 h-5")}
+      </div>
+      <h3 class="font-semibold text-sm">${s.title}</h3>
+      <p class="text-xs text-soft mt-1.5 leading-relaxed">${s.desc}</p>
+    </div>
+  `).join("");
+})();
+
+/* ============================================================
+   RENDER: project thumbnails (inline SVG, no stock images)
+   ============================================================ */
+function thumbSvg(key){
+  const w=400,h=220;
+  const wrap = (inner,bg)=>`<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
+    <defs>
+      <radialGradient id="g-${key}" cx="30%" cy="20%" r="90%">
+        <stop offset="0%" stop-color="${bg[0]}"/><stop offset="100%" stop-color="${bg[1]}"/>
+      </radialGradient>
+    </defs>
+    <rect width="${w}" height="${h}" fill="url(#g-${key})"/>
+    ${inner}
+  </svg>`;
+
+  if(key==="jarvis"){
+    return wrap(`
+      <g opacity="0.35" stroke="#5FE3FF" stroke-width="1">
+        <circle cx="130" cy="110" r="70"/><circle cx="130" cy="110" r="50"/><circle cx="130" cy="110" r="90"/>
+      </g>
+      <circle cx="130" cy="110" r="34" fill="none" stroke="#5FE3FF" stroke-width="2.5"/>
+      <circle cx="130" cy="110" r="6" fill="#5FE3FF"/>
+      <path d="M60 110h30M170 110h30M130 40v30M130 150v30" stroke="#5FE3FF" stroke-width="1.5" opacity=".6"/>
+      <text x="230" y="70" fill="#EAF9FF" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700">JARVIS</text>
+      <text x="230" y="90" fill="#5FE3FF" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700">MK-12</text>
+      <text x="230" y="112" fill="#9FE9FF" font-family="Inter,sans-serif" font-size="9">AI DESKTOP ASSISTANT</text>
+    `, ["#123B52","#04121F"]);
+  }
+  if(key==="bos"){
+    return wrap(`
+      <rect x="30" y="40" width="340" height="140" rx="10" fill="#0F1730" stroke="#7C6AF6" stroke-opacity=".4"/>
+      <rect x="30" y="40" width="340" height="26" rx="10" fill="#171F42"/>
+      <circle cx="46" cy="53" r="3.5" fill="#FF6B6B"/><circle cx="58" cy="53" r="3.5" fill="#FFD166"/><circle cx="70" cy="53" r="3.5" fill="#33D69F"/>
+      <g fill="#7C6AF6" opacity=".85"><rect x="50" y="120" width="18" height="45"/><rect x="78" y="100" width="18" height="65"/><rect x="106" y="135" width="18" height="30"/><rect x="134" y="90" width="18" height="75"/></g>
+      <path d="M50 105 L90 85 L130 95 L170 70" stroke="#5FA0FF" stroke-width="2" fill="none"/>
+      <rect x="200" y="90" width="150" height="12" rx="6" fill="#2A335C"/>
+      <rect x="200" y="112" width="110" height="12" rx="6" fill="#2A335C"/>
+      <rect x="200" y="134" width="130" height="12" rx="6" fill="#2A335C"/>
+      <text x="30" y="30" fill="#EDEEFB" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700">BOS</text>
+      <text x="72" y="30" fill="#9A9DC7" font-family="Inter,sans-serif" font-size="9">BUSINESS MANAGEMENT SYSTEM</text>
+    `, ["#171E40","#0A0D22"]);
+  }
+  if(key==="energy"){
+    return wrap(`
+      <g transform="translate(150,25)">
+        <rect x="0" y="0" width="70" height="165" rx="14" fill="#0E0E0E" stroke="#B6FF3C" stroke-width="1.5"/>
+        <rect x="0" y="0" width="70" height="28" rx="14" fill="#B6FF3C" opacity=".9"/>
+        <path d="M40 45 L20 90 L34 90 L26 125 L54 78 L38 78 Z" fill="#B6FF3C"/>
+        <text x="35" y="145" fill="#B6FF3C" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" text-anchor="middle">FUEL</text>
+      </g>
+      <g opacity=".5" stroke="#B6FF3C"><path d="M40 50 L60 40 M40 90 L55 100 M330 60 L345 50 M340 140 L355 150" stroke-width="2"/></g>
+      <text x="30" y="45" fill="#F3FFE0" font-family="Space Grotesk,sans-serif" font-size="19" font-weight="700">FUEL YOUR</text>
+      <text x="30" y="68" fill="#B6FF3C" font-family="Space Grotesk,sans-serif" font-size="19" font-weight="700">LIMITS</text>
+      <text x="30" y="190" fill="#DFF7BE" font-family="Inter,sans-serif" font-size="9">ENERGY DRINK BRAND SITE</text>
+    `, ["#132400","#050800"]);
+  }
+  if(key==="music"){
+    return wrap(`
+      <circle cx="300" cy="110" r="95" fill="url(#g-${key})"/>
+      <g stroke="#FF7AD9" stroke-width="4" stroke-linecap="round">
+        <line x1="60" y1="120" x2="60" y2="150"/><line x1="75" y1="100" x2="75" y2="170"/><line x1="90" y1="80" x2="90" y2="190"/>
+        <line x1="105" y1="105" x2="105" y2="165"/><line x1="120" y1="60" x2="120" y2="210"/><line x1="135" y1="95" x2="135" y2="175"/>
+        <line x1="150" y1="75" x2="150" y2="195"/><line x1="165" y1="115" x2="165" y2="155"/><line x1="180" y1="90" x2="180" y2="180"/>
+      </g>
+      <circle cx="230" cy="135" r="26" fill="#FDF2FF" opacity=".92"/>
+      <path d="M223 122 L245 135 L223 148 Z" fill="#9B2FD6"/>
+      <text x="60" y="50" fill="#FDEBFF" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="700">MUSIC VIBE</text>
+      <text x="60" y="68" fill="#F3AFFF" font-family="Inter,sans-serif" font-size="9">NOW PLAYING</text>
+    `, ["#3A0E4F","#0C0316"]);
+  }
+  // chat
+  return wrap(`
+    <rect x="45" y="45" width="170" height="70" rx="18" fill="#123A3A" stroke="#3FE0C5" stroke-opacity=".5"/>
+    <rect x="45" y="45" width="170" height="70" rx="18" fill="none"/>
+    <path d="M75 115 l0 20 22 -20" fill="#123A3A" stroke="#3FE0C5" stroke-opacity=".5"/>
+    <rect x="150" y="95" width="190" height="70" rx="18" fill="#0E4A46" stroke="#3FE0C5" stroke-opacity=".7"/>
+    <path d="M320 165 l0 20 -22 -20" fill="#0E4A46" stroke="#3FE0C5" stroke-opacity=".7"/>
+    <circle cx="60" cy="60" r="3" fill="#3FE0C5"/><circle cx="70" cy="60" r="3" fill="#3FE0C5"/><circle cx="80" cy="60" r="3" fill="#3FE0C5"/>
+    <text x="45" y="35" fill="#E9FFFA" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700">Live Chat</text>
+    <text x="45" y="200" fill="#8CF3DF" font-family="Inter,sans-serif" font-size="9">REAL-TIME MESSAGING</text>
+  `, ["#0E3B3B","#04120F"]);
+}
+
+/* ============================================================
+   RENDER: projects
+   ============================================================ */
+(function renderProjects(){
+  const grid = document.getElementById("projectsGrid");
+  grid.innerHTML = PROJECTS.map((p,i)=>`
+    <article class="proj-card glass rounded-[1.25rem] overflow-hidden card-hover reveal" style="transition-delay:${i*0.06}s">
+      <div class="thumb-wrap h-44">${thumbSvg(p.thumb)}</div>
+      <div class="p-6">
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          ${p.tech.slice(0,4).map(t=>`<span class="text-[10px] font-semibold px-2 py-1 rounded-full" style="background:var(--surface);border:1px solid var(--surface-border)">${t}</span>`).join("")}
+        </div>
+        <h3 class="font-display font-semibold text-base">${p.title}</h3>
+        <p class="text-xs text-soft mt-2 leading-relaxed">${p.desc}</p>
+        <div class="mt-5 flex items-center justify-between">
+          <button class="view-project inline-flex items-center gap-1.5 text-sm font-semibold" style="color:var(--violet)" data-id="${p.id}">
+            View Project <svg class="w-4 h-4"><use href="#i-arrow"/></svg>
+          </button>
+          <a href="${p.github}" target="_blank" rel="noopener" class="icon-btn" style="width:2.2rem;height:2.2rem" aria-label="GitHub repository for ${p.title}">
+            <svg style="width:.95rem;height:.95rem"><use href="#i-github"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  grid.querySelectorAll(".view-project").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const p = PROJECTS.find(x=>x.id===btn.dataset.id);
+      const url = p.live || p.github;
+      window.open(url, "_blank", "noopener");
+    });
+  });
+})();
+
+/* ============================================================
+   RENDER: skills
+   ============================================================ */
+(function renderSkills(){
+  const techByName = Object.fromEntries(TECHS.map(t=>[t.n,t]));
+  const wrap = document.getElementById("skillsList");
+  wrap.innerHTML = SKILL_GROUPS.map((g,i)=>`
+    <div class="reveal" style="transition-delay:${i*0.05}s">
+      <p class="text-xs font-semibold text-soft mb-3">${g.label}</p>
+      <div class="flex flex-wrap gap-2.5">
+        ${g.items.map(name=>{
+          const t = techByName[name];
+          const dot = t ? `<span class="w-2 h-2 rounded-full" style="background:${t.bg}"></span>` : `<span class="w-2 h-2 rounded-full" style="background:var(--grad-brand)"></span>`;
+          return `<span class="chip">${dot}${name}</span>`;
+        }).join("")}
+      </div>
+    </div>
+  `).join("");
+})();
+
+/* ============================================================
+   RENDER: education / certifications / extra
+   ============================================================ */
+(function renderLists(){
+  document.getElementById("eduList").innerHTML = EDUCATION.map(e=>`
+    <div class="flex gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:var(--surface);border:1px solid var(--surface-border);color:var(--violet)">${icon("cap","w-4 h-4")}</div>
+      <div>
+        <p class="text-sm font-semibold leading-snug">${e.school}</p>
+        <p class="text-xs text-soft mt-0.5">${e.loc}</p>
+        <p class="text-xs text-soft">${e.time}</p>
+      </div>
+    </div>
+  `).join("");
+
+  document.getElementById("certList").innerHTML = CERTS.map(c=>`
+    <div class="flex gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:var(--surface);border:1px solid var(--surface-border);color:var(--blue)">${icon("badge","w-4 h-4")}</div>
+      <div>
+        <p class="text-sm font-semibold leading-snug">${c.title}</p>
+        <p class="text-xs text-soft mt-0.5">${c.org}${c.year? " — "+c.year:""}</p>
+      </div>
+    </div>
+  `).join("");
+
+  document.getElementById("extraList").innerHTML = EXTRA.map(x=>`
+    <div class="flex gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:var(--surface);border:1px solid var(--surface-border);color:var(--violet)">${icon(x.icon,"w-4 h-4")}</div>
+      <div>
+        <p class="text-sm font-semibold leading-snug">${x.title}</p>
+        <p class="text-xs text-soft mt-0.5">${x.desc}</p>
+      </div>
+    </div>
+  `).join("");
+})();
+
+/* ============================================================
+   THEME TOGGLE (per-viewer convenience — localStorage)
+   ============================================================ */
+(function theme(){
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  let stored = null;
+  try{ stored = localStorage.getItem("zaid-theme"); }catch(e){}
+  if(stored === "dark" || stored === "light"){ root.setAttribute("data-theme", stored); }
+  btn.addEventListener("click", ()=>{
+    const current = root.getAttribute("data-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("zaid-theme", next); }catch(e){}
+  });
+})();
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+(function mobileMenu(){
+  const btn = document.getElementById("menuBtn");
+  const menu = document.getElementById("mobileMenu");
+  const iconWrap = document.getElementById("menuIcon");
+  function close(){
+    menu.classList.remove("open");
+    btn.setAttribute("aria-expanded","false");
+    iconWrap.innerHTML = '<use href="#i-menu"/>';
+  }
+  btn.addEventListener("click", ()=>{
+    const open = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true":"false");
+    iconWrap.innerHTML = open ? '<use href="#i-close"/>' : '<use href="#i-menu"/>';
+  });
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click", close));
+})();
+
+/* ============================================================
+   SCROLL: progress bar + nav active state + header shrink
+   ============================================================ */
+(function scrollFx(){
+  const bar = document.getElementById("scrollProgress");
+  const sections = ["home","about","projects","services","skills","experience","contact"]
+    .map(id=>document.getElementById(id)).filter(Boolean);
+  const navLinks = document.querySelectorAll("[data-nav]");
+
+  function onScroll(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = (scrolled||0) + "%";
+
+    let current = sections[0];
+    const pos = window.scrollY + 140;
+    sections.forEach(s=>{ if(s.offsetTop <= pos) current = s; });
+    navLinks.forEach(a=>{
+      a.classList.toggle("active", a.getAttribute("href") === "#"+current.id);
+    });
+  }
+  document.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+})();
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+(function reveal(){
+  const els = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12, rootMargin:"0px 0px -60px 0px"});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ============================================================
+   PAGE LOAD ANIMATION
+   ============================================================ */
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{ document.getElementById("loader").classList.add("hide"); }, 350);
+});
+
+/* ============================================================
+   DOWNLOAD CV
+   ============================================================ */
+document.getElementById("downloadCv").addEventListener("click", (e)=>{
+  e.preventDefault();
+  if(CONFIG.resumeUrl){ window.open(CONFIG.resumeUrl, "_blank", "noopener"); }
+  else { showToast("Resume coming soon", "Add a hosted PDF link to CONFIG.resumeUrl in the code to enable this."); }
+});
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer = null;
+function showToast(title, sub){
+  const t = document.getElementById("toast");
+  t.querySelector(".text-sm").textContent = title;
+  t.querySelector(".text-xs").textContent = sub;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"), 3800);
+}
+
+/* ============================================================
+   CONTACT FORM VALIDATION
+   ============================================================ */
+(function contactForm(){
+  const form = document.getElementById("contactForm");
+  const fields = ["name","email","project","message"];
+  function validate(){
+    let ok = true;
+    fields.forEach(f=>{
+      const input = form.querySelector(`[name="${f}"]`);
+      const err = form.querySelector(`[data-error-for="cf-${f}"]`);
+      let valid = input.value.trim().length > 1;
+      if(f === "email"){
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      }
+      input.classList.toggle("field-error", !valid);
+      err.classList.toggle("show", !valid);
+      if(!valid) ok = false;
+    });
+    return ok;
+  }
+  fields.forEach(f=>{
+    const input = form.querySelector(`[name="${f}"]`);
+    input.addEventListener("input", ()=>{
+      input.classList.remove("field-error");
+      form.querySelector(`[data-error-for="cf-${f}"]`).classList.remove("show");
+    });
+  });
+  form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    if(!validate()) return;
+    // NOTE: no backend wired up — connect to your email/service of choice.
+    showToast("Message sent", "Thanks for reaching out — I'll reply soon.");
+    form.reset();
+  });
+})();
+
+})();
+</script>
+
+</body>
+</html>
