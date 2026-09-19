@@ -930,7 +930,14 @@ window.addEventListener("load", ()=>{
    ============================================================ */
 document.getElementById("downloadCv").addEventListener("click", (e)=>{
   e.preventDefault();
-  if(CONFIG.resumeUrl){ window.open(CONFIG.resumeUrl, "_blank", "noopener"); }
+  if(CONFIG.resumeUrl){
+    const link = document.createElement("a");
+    link.href = CONFIG.resumeUrl;
+    link.download = "Mohd-Zaid-Gaibuwale-Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   else { showToast("Resume coming soon", "Add a hosted PDF link to CONFIG.resumeUrl in the code to enable this."); }
 });
 
@@ -989,4 +996,3 @@ function showToast(title, sub){
 
 </body>
 </html>
- 
