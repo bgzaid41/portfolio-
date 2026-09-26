@@ -565,6 +565,12 @@ const PROJECTS = [
     tech:["React","Node.js","Socket.io","MongoDB"],
     desc:"A modern real-time chat application with authentication, messaging and live communication features.",
     live:"", github:CONFIG.githubProfile, thumb:"chat"
+  },
+  {
+    id:"jdm", title:"90s JDM Pioneer", category:"Automotive Music Experience",
+    tech:["HTML","CSS","JavaScript","Audio Visualizer"],
+    desc:"A retro-inspired JDM Pioneer music experience featuring a playlist, shuffle and repeat, saved playlists, audio visualizer, day/night themes and a cinematic startup sequence.",
+    live:"https://github.com/bgzaid41/90s-jdm-pioneer", github:"https://github.com/bgzaid41/90s-jdm-pioneer", thumb:"jdm"
   }
 ];
 
@@ -737,6 +743,35 @@ function thumbSvg(key){
       <text x="60" y="50" fill="#FDEBFF" font-family="Space Grotesk,sans-serif" font-size="17" font-weight="700">MUSIC VIBE</text>
       <text x="60" y="68" fill="#F3AFFF" font-family="Inter,sans-serif" font-size="9">NOW PLAYING</text>
     `, ["#3A0E4F","#0C0316"]);
+  }
+  if(key==="jdm"){
+    return wrap(`
+      <g opacity=".28" stroke="#F6B84A" stroke-width="1">
+        <path d="M0 170H400M0 185H400M0 200H400" />
+        <path d="M25 0V220M375 0V220" />
+      </g>
+      <circle cx="320" cy="110" r="78" fill="none" stroke="#F6B84A" stroke-opacity=".35" stroke-width="2"/>
+      <circle cx="320" cy="110" r="58" fill="none" stroke="#F6B84A" stroke-opacity=".25" stroke-width="1"/>
+      <g transform="translate(205,75)">
+        <path d="M5 53 18 27Q22 20 34 18L78 12Q90 11 99 22L117 42 137 47Q145 50 145 60V69H0V61Q0 55 5 53Z" fill="#E6E8EA" stroke="#F6B84A" stroke-width="1.5"/>
+        <path d="M34 22 78 17Q88 16 95 25L105 39H22Z" fill="#18202B" stroke="#F6B84A" stroke-opacity=".6"/>
+        <path d="M3 53H142" stroke="#F6B84A" stroke-width="2"/>
+        <circle cx="29" cy="68" r="12" fill="#10131A" stroke="#F6B84A" stroke-width="3"/>
+        <circle cx="116" cy="68" r="12" fill="#10131A" stroke="#F6B84A" stroke-width="3"/>
+        <circle cx="29" cy="68" r="4" fill="#D8DCE0"/><circle cx="116" cy="68" r="4" fill="#D8DCE0"/>
+      </g>
+      <text x="28" y="55" fill="#FFF3D6" font-family="Space Grotesk,sans-serif" font-size="18" font-weight="700">90s JDM</text>
+      <text x="28" y="78" fill="#F6B84A" font-family="Space Grotesk,sans-serif" font-size="18" font-weight="700">PIONEER</text>
+      <text x="30" y="105" fill="#D7D9DF" font-family="Inter,sans-serif" font-size="9" letter-spacing="2">RETRO MUSIC EXPERIENCE</text>
+      <path d="M30 125H155" stroke="#F6B84A" stroke-width="2" opacity=".8"/>
+      <g fill="#F6B84A">
+        <rect x="30" y="140" width="4" height="15" rx="2"/><rect x="40" y="133" width="4" height="22" rx="2"/>
+        <rect x="50" y="145" width="4" height="10" rx="2"/><rect x="60" y="128" width="4" height="27" rx="2"/>
+        <rect x="70" y="137" width="4" height="18" rx="2"/><rect x="80" y="130" width="4" height="25" rx="2"/>
+        <rect x="90" y="143" width="4" height="12" rx="2"/><rect x="100" y="134" width="4" height="21" rx="2"/>
+        <rect x="110" y="140" width="4" height="15" rx="2"/><rect x="120" y="131" width="4" height="24" rx="2"/>
+      </g>
+    `, ["#242018","#090B10"]);
   }
   // chat
   return wrap(`
